@@ -5,8 +5,10 @@ import org.springframework.data.cassandra.core.mapping.Table
 
 
 @Table
-class ToDo(var description:String,var isChecked:Boolean){
+class ToDo(
+        @PrimaryKey
+        var id:String,
+        var description:String,
+        var isChecked:Boolean)
 
-    @PrimaryKey
-    var id: String? = null
-}
+
