@@ -10,32 +10,35 @@ import com.datastax.driver.core.utils.UUIDs
 import org.omg.CORBA.Object
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.PostMapping
-
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @RestController
-class ToDoController{
+class ToDoController {
     @Autowired
-    var toDoServices =ToDoServices()
+    var toDoServices = ToDoServices()
 
+    @CrossOrigin("http://localhost:4200")
     @GetMapping("/todos")
-    fun getAllToDo():List<ToDo>{
+    fun getAllToDo(): Any {
         return toDoServices.getAllToDo()
     }
 
+    @CrossOrigin("http://localhost:4200")
     @PostMapping("/todos")
-    fun addToDo(@RequestBody toDo:ToDo):ResponseEntity<ToDo>{
+    fun addToDo(@RequestBody toDo: ToDo): ResponseEntity<ToDo> {
         return toDoServices.addToDo(toDo)
     }
 
+    @CrossOrigin("http://localhost:4200")
     @PutMapping("/todos")
-    fun updateToDo(@RequestBody toDo:ToDo):ResponseEntity<ToDo>{
+    fun updateToDo(@RequestBody toDo: ToDo): ResponseEntity<ToDo> {
         return toDoServices.updateToDo(toDo)
     }
 
+    @CrossOrigin("http://localhost:4200")
     @DeleteMapping("/todos/{id}")
-    fun deleteToDo(@PathVariable("id") id:String):ResponseEntity<String>{
+    fun deleteToDo(@PathVariable("id") id: String): ResponseEntity<String> {
         return toDoServices.deleteToDo(id)
     }
 
